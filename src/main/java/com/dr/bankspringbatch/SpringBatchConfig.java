@@ -62,20 +62,20 @@ public class SpringBatchConfig {
 
         CompositeItemProcessor<BankTransaction, BankTransaction> compositeItemProcessor = new CompositeItemProcessor<>();
         compositeItemProcessor.setDelegates(itemProcessors);
-        
+
         return compositeItemProcessor;
     }
 
     // equivalent a @component in BankTransactionItemAnalyticsProcessor
     @Bean
-    public ItemProcessor<BankTransaction, BankTransaction> bankItemAnalyticsProcessor() {
+    public BankTransactionItemAnalyticsProcessor bankItemAnalyticsProcessor() {
         return new BankTransactionItemAnalyticsProcessor();
     }
 
 
     // equivalent a @component in BankTransactionItemProcessor
     @Bean
-    public ItemProcessor<BankTransaction, BankTransaction> bankItemProcessor() {
+    public BankTransactionItemProcessor bankItemProcessor() {
         return new BankTransactionItemProcessor();
     }
 

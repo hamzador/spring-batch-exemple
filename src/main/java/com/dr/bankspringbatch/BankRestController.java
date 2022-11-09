@@ -17,6 +17,9 @@ public class BankRestController {
     @Autowired
     private Job job;
 
+    @Autowired
+    private BankTransactionItemAnalyticsProcessor bankTransactionItemAnalyticsProcessor;
+
 //    @Autowired
 //    public BankRestController(JobLauncher jobLauncher, Job job) {
 //        this.jobLauncher = jobLauncher;
@@ -33,5 +36,15 @@ public class BankRestController {
             System.out.println("....");
         }
         return jobExecution.getStatus();
+    }
+
+    @GetMapping("/analytics")
+    public Map<String, Double> analytics() {
+
+        Map<String, Double> result = new HashMap<>();
+        result.put("totalCredit", bankTransactionItemAnalyticsProcessor.getTotalCredit());
+        result.put("totalDebit",bankTransactionItemAnalyticsProcessor.getTotalDebit());
+
+        return result;
     }
 }
